@@ -9,11 +9,11 @@ each box may contain keys to the other boxes.
 def canUnlockAll(boxes):
     """ lockboxes problem """
     boxesNbr = len(boxes) - 1
-    unlockedBoxes = []
+    unlocked = []
     for i, box in enumerate(boxes):
         for key in box:
             if key <= boxesNbr:
-                if not unlockedBoxes.__contains__(key):
-                    unlockedBoxes.append(key)
-    canUnlock = len(unlockedBoxes) == (boxesNbr) or len(unlockedBoxes) == (boxesNbr + 1)
+                if not unlocked.__contains__(key):
+                    unlocked.append(key)
+    canUnlock = len(unlocked) == (boxesNbr) or len(unlocked) == (boxesNbr + 1)
     return canUnlock
