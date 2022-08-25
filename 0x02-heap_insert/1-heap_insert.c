@@ -119,7 +119,6 @@ heap_t *heap_insert(heap_t **root, int value)
 		if (node != NULL)
 			break;
 	}
-	//_sort(node);
 	while (node->parent != NULL && node->n > node->parent->n)
 	{
 		tmp = node->parent->n;
