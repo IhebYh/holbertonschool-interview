@@ -1,6 +1,5 @@
 #!usr/bin/python3
 
-import math
 
 def minOperations(n):
     """
@@ -8,8 +7,14 @@ def minOperations(n):
     the fewest number of operations needed to result
     in exactly n H characters in the file.
     """
-    if math.sqrt(n)**2 == n:
-        return int(math.sqrt(n) * 2)
-    elif n % 2 == 0:
-        return int(n / 2 + 1)
-    return 0
+    if n < 2 or type(n) != int:
+        return 0
+    op = 2
+    counter = 1
+    while counter <= n:
+        if counter == n:
+            op += 1
+        else:
+            op += 2
+        counter += 1
+    return op
