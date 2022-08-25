@@ -43,6 +43,6 @@ heap_t *heap_insert(heap_t **root, int value)
 		if (node != NULL)
 			break;
 	}
-	_sort(*node);
+	_sort(node);
 	return (node);
 }
