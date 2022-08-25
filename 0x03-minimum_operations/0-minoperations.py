@@ -3,6 +3,7 @@
 Minimum Operations Model
 """
 
+
 def minOperations(n):
     """
     Given a number n, write a method that calculates
