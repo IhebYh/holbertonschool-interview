@@ -15,6 +15,12 @@ int isUnstable(int grid[3][3])
 				return (1);
 	return (0);
 }
+
+/**
+ * topple - topples a sandpile, dispersing all cells > 3
+ * @grid1: the sandpile to topple
+ * @grid2: the 'buffer' pile which stores the dispersions
+ */
 void topple(int grid1[3][3], int grid2[3][3])
 {
 	size_t i, j;
@@ -29,6 +35,12 @@ void topple(int grid1[3][3], int grid2[3][3])
 				grid1[i][j] -= 4;
 	calculate(grid1, grid2);
 }
+
+/**
+ * calculate - adds two sandpiles, nulling the 2nd as a buffer
+ * @grid1: first sandpile, stores sum
+ * @grid2: second sandpile, gets nulled
+ */
 void calculate(int grid1[3][3], int grid2[3][3])
 {
 
@@ -38,6 +50,7 @@ void calculate(int grid1[3][3], int grid2[3][3])
 		for (j = 0; j < 3; j++)
 			grid1[i][j] += grid2[i][j], grid2[i][j] = 0;
 }
+
 /**
  * print_sandpile - prints the sandpile
  * @grid: the sandpile to print
@@ -57,6 +70,7 @@ void print_sandpile(int grid[3][3])
 		printf("\n");
 	}
 }
+
 /**
  * sandpiles_sum -  a function that computes the sum of two sandpiles
  * WARNING -> NOT ALLOWED TO ALLOCATE MEMORY DYNAMICALLLY
@@ -66,17 +80,11 @@ void print_sandpile(int grid[3][3])
  */
 void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 {
-	int sum_printed = 0;
-	calculate(grid1,grid2);
-	while(isUnstable(grid1))
+	calculate(grid1, grid2);
+	while (isUnstable(grid1))
 	{
 		printf("=\n");
 		print_sandpile(grid1);
-		topple(grid1,grid2);
-		sum_printed = 1;
-	}
-	if (sum_printed == 0){
-		printf("=\n");
-		print_sandpile(grid1);
+		topple(grid1, grid2);
 	}
 }
