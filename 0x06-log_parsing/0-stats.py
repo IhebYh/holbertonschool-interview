@@ -1,7 +1,9 @@
 #!/usr/bin/python3
+'''Module for log parsing script.'''
+
+
 import sys
 import signal
-'''Module for log parsing script.'''
 if __name__ == "__main__":
     counter = 0
     fileSize = 0
@@ -12,6 +14,7 @@ if __name__ == "__main__":
                 '405': 0,
                 '500': 0
                 }
+
     def handler(sig, frame):
         ''' Log handler '''
         print("File size: {}".format(fileSize))
