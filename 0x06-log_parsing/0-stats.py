@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 import sys
 import signal
-
+'''Module for log parsing script.'''
 
 def handler(sig, frame):
+    ''' Log handler '''
     print("File size: {}".format(fileSize))
     for status in statuses:
         print("{}: {}".format(status, statuses[status]))
