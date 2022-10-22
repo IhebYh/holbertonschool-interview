@@ -29,7 +29,7 @@ if __name__ == "__main__":
         lineSplitted = line.split(" ")
         if (lineSplitted[-1].isdigit()):
             fileSize += int(lineSplitted[-1])
-        if statuses.__contains__(lineSplitted[-2]):
+        if len(lineSplitted) > 1 and statuses.__contains__(lineSplitted[-2]):
             statuses[lineSplitted[-2]] += 1
             counter += 1
         if counter == 10:
