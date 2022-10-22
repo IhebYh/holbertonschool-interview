@@ -27,7 +27,8 @@ if __name__ == "__main__":
     while sys.stdin.readable():
         line = sys.stdin.readline()
         lineSplitted = line.split(" ")
-        fileSize += int(lineSplitted[-1])
+        if (lineSplitted[-1].isdigit()):
+            fileSize += int(lineSplitted[-1])
         if statuses.__contains__(lineSplitted[-2]):
             statuses[lineSplitted[-2]] += 1
             counter += 1
