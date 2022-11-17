@@ -31,9 +31,9 @@ skiplist_t *create_skiplist(int *array, size_t size);
 void print_skiplist(const skiplist_t *list);
 void free_skiplist(skiplist_t *list);
 skiplist_t *linear_skip(skiplist_t *head, int value);
-size_t getLen(skiplist_t *head);
-void printCheck(size_t index, int value);
-void printFound(size_t index, int value);
-void printCompare(size_t i, size_t p);
+void printCheck(int index, int value);
+void printCompare(int i, int p);
+skiplist_t *getTail(skiplist_t *list);
+skiplist_t *linear(skiplist_t *head, int value);
 
 #endif /* _SEARCH_H_ */

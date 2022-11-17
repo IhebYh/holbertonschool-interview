@@ -1,55 +1,59 @@
 #include "search.h"
 
 /**
- * getLen - Get the Length of skiplist
- * @head : skip list
- * Return: size_t
+ * printCheck - printing checked value message to make the
+ * code look clean
+ * @index: index
+ * @value: value
  */
-size_t getLen(skiplist_t *head)
-{
-	size_t i = 0;
-
-	while (head)
-	{
-		head = head->next
-		i++;
-	}
-	return (i);
-}
-
-/**
-  * printCheck - printing checked value message to make the
-  * code look clean
-  * @index: index
-  * @value: value
-  */
-void printCheck(size_t index, int value)
+void printCheck(int index, int value)
 {
 	printf("Value checked at index [%d] = [%d]\n", index, value);
 }
 
 /**
-  * printFound - printing found value message to make the
-  * code look clean
-  * @index: index
-  * @value: value
-  */
-void printFound(size_t index, int value)
-{
-	printf("Found %d at index: %d\n", value, index);
-}
-
-/**
-  * printCompare - printing compared value message to make the
-  * code look clean
-  * @i: index
-  * @p: previous index
-  */
-void printCompare(size_t i, size_t p)
+ * printCompare - printing compared value message to make the
+ * code look clean
+ * @i: index
+ * @p: previous index
+ */
+void printCompare(int i, int p)
 {
 	printf("Value found between indexes [%d] and [%d]\n", p, i);
 }
-
+/**
+ * getTail - Get the Tail of the list
+ * @list : skiplist
+ * Return: skiplist_t*
+ */
+skiplist_t *getTail(skiplist_t *list)
+{
+	while (list->next)
+	{
+		if (list->next == NULL)
+			return (list);
+		list = list->next;
+	}
+	return (list);
+}
+/**
+ * linear - a function that searches for a value in a sorted linear list
+ * @head : skiplist
+ * @value : int
+ * Return: skiplist_t* || NULL
+ */
+skiplist_t *linear(skiplist_t *head, int value)
+{
+	while (head)
+	{
+		if (head->n <= value)
+			printCheck(head->index, head->n);
+		if (head->n == value)
+			return (head);
+		head = head->next;
+	}
+	return (NULL);
+}
 /**
  * linear_skip - a function that searches for a value in a
  * sorted skip list of integers.
@@ -59,43 +63,40 @@ void printCompare(size_t i, size_t p)
  */
 skiplist_t *linear_skip(skiplist_t *head, int value)
 {
-	skiptlist_t prev = head;
-	size_t index = 0, prev_index = 0, len = 0;
+	skiplist_t *prev = head;
+	int prev_index = 0;
 
-	len = getLen(head);
 	if (!head)
 		return (NULL);
-	while (head)
+	while (head->next)
 	{
-		if (head->value == value)
+		prev_index = head->index;
+		prev = head;
+		head = prev->express ? head->express : head->next;
+		if (head->n == value)
 		{
-			printFound(index, value);
 			return (head);
 		}
-		if (head->value < value)
+		if ((head->n < value) && prev->express != NULL)
 		{
-			printCheck(index, value);
-			prev_index = index;
-			index += sqrt(len);
+			printCheck(head->index, head->n);
 		}
-		if (head->value > value)
+		if ((head->n > value && prev->n < value) || head->express == NULL)
 		{
-			printCompare(index, prev_index);
-			index = prev_index;
-			head = prev;
-			while (head)
+			if (head->express != NULL)
+				printCheck(head->index, head->n);
+			if (head->n < value && head->express == NULL)
 			{
-				if (head->value == value)
-				{
-					printFound(index, value);
-					return (head);
-				}
-				if (head->value < value)
-					printCheck(index, value);
-				head = head->next;
-				index++;
+				prev = head;
+				prev_index = prev->index;
+				printCompare(getTail(head)->index, prev_index);
 			}
-			return (NULL);
+			else
+			{
+				printCompare(head->index, prev_index);
+				head = prev;
+			}
+			return (linear(head, value));
 		}
 	}
 	return (NULL);
