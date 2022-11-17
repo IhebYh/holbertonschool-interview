@@ -8,7 +8,7 @@
  */
 void printCheck(int index, int value)
 {
-	printf("Value checked at index [%d] = [%d] \n", index, value);
+	printf("Value checked at index [%d] = [%d]\n", index, value);
 }
 
 /**
@@ -19,7 +19,7 @@ void printCheck(int index, int value)
  */
 void printCompare(int i, int p)
 {
-	printf("Value found between indexes [%d] and [%d] \n", p, i);
+	printf("Value found between indexes [%d] and [%d]\n", p, i);
 }
 
 /**
