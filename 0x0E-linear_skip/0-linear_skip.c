@@ -8,7 +8,7 @@
  */
 void printCheck(int index, int value)
 {
-	printf("Value checked at index [%d] = [%d]\n", index, value);
+	printf("Value checked at index [%d] = [%d] \n", index, value);
 }
 
 /**
@@ -19,7 +19,7 @@ void printCheck(int index, int value)
  */
 void printCompare(int i, int p)
 {
-	printf("Value found between indexes [%d] and [%d]\n", p, i);
+	printf("Value found between indexes [%d] and [%d] \n", p, i);
 }
 
 /**
@@ -80,13 +80,12 @@ skiplist_t *linear_skip(skiplist_t *head, int value)
 		{
 			return (head);
 		}
-		if ((head->n < value))
+		if (head->n < value)
 		{
 			printCheck(head->index, head->n);
 		}
 		if ((head->n > value && prev->n < value) || head->express == NULL)
 		{
-			
 			if (head->n < value && head->express == NULL)
 			{
 				prev = head;
