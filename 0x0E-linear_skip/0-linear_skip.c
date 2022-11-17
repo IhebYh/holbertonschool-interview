@@ -21,6 +21,7 @@ void printCompare(int i, int p)
 {
 	printf("Value found between indexes [%d] and [%d]\n", p, i);
 }
+
 /**
  * getTail - Get the Tail of the list
  * @list : skiplist
@@ -36,6 +37,7 @@ skiplist_t *getTail(skiplist_t *list)
 	}
 	return (list);
 }
+
 /**
  * linear - a function that searches for a value in a sorted linear list
  * @head : skiplist
@@ -54,6 +56,7 @@ skiplist_t *linear(skiplist_t *head, int value)
 	}
 	return (NULL);
 }
+
 /**
  * linear_skip - a function that searches for a value in a
  * sorted skip list of integers.
@@ -77,14 +80,13 @@ skiplist_t *linear_skip(skiplist_t *head, int value)
 		{
 			return (head);
 		}
-		if ((head->n < value) && prev->express != NULL)
+		if ((head->n < value))
 		{
 			printCheck(head->index, head->n);
 		}
 		if ((head->n > value && prev->n < value) || head->express == NULL)
 		{
-			if (head->express != NULL)
-				printCheck(head->index, head->n);
+			
 			if (head->n < value && head->express == NULL)
 			{
 				prev = head;
@@ -93,6 +95,7 @@ skiplist_t *linear_skip(skiplist_t *head, int value)
 			}
 			else
 			{
+				printCheck(head->index, head->n);
 				printCompare(head->index, prev_index);
 				head = prev;
 			}
