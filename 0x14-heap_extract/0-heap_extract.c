@@ -10,11 +10,11 @@
  * Return: value stored in extracted node, or 0 if failed
  */
 
-int heap_extract(binary_tree_t **root)
+int heap_extract(heap_t **root)
 {
 	int value = 0, check = 1;
 	size_t height = 0, level = 0;
-	binary_tree_t *left = NULL, *right = NULL, *last = NULL;
+	heap_t *left = NULL, *right = NULL, *last = NULL;
 
 	/* NULL checks */
 	if (root == NULL || *root == NULL)
@@ -48,7 +48,7 @@ int heap_extract(binary_tree_t **root)
  * Return: returns the height of the overall tree
  */
 
-size_t binary_tree_height(binary_tree_t *root)
+size_t binary_tree_height(heap_t *root)
 {
 	if (root == NULL)
 		return (0);
@@ -67,7 +67,7 @@ size_t binary_tree_height(binary_tree_t *root)
  * Return: location of last node in level order, which will replace root node
  */
 
-void find_replacement(binary_tree_t *root, size_t level, binary_tree_t **last)
+void find_replacement(heap_t *root, size_t level, heap_t **last)
 {
 	if (root == NULL)
 		return;
@@ -87,8 +87,8 @@ void find_replacement(binary_tree_t *root, size_t level, binary_tree_t **last)
  * @last: double pointer to last node from level order traversal
  */
 
-void free_and_replace(binary_tree_t **root, binary_tree_t **left,
-			  binary_tree_t **right, binary_tree_t **last)
+void free_and_replace(heap_t **root, heap_t **left,
+			  heap_t **right, heap_t **last)
 {
 	/* extract and reset root pointer if only node */
 	if (*last == *root)
@@ -128,9 +128,9 @@ void free_and_replace(binary_tree_t **root, binary_tree_t **left,
  * @check: int pointer to flag if need to continue swapping
  */
 
-void heapify(binary_tree_t **root, binary_tree_t *current, int *check)
+void heapify(heap_t **root, heap_t *current, int *check)
 {
-	binary_tree_t *max = NULL, *left = current->left, *right = current->right;
+	heap_t *max = NULL, *left = current->left, *right = current->right;
 
 	max = current;
 	if (left && left->n > max->n)

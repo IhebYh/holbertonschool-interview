@@ -21,12 +21,14 @@ typedef struct binary_tree_s
 	struct binary_tree_s *right;
 } binary_tree_t;
 
-void binary_tree_print(const binary_tree_t *);
-int heap_extract(binary_tree_t **root);
-size_t binary_tree_height(binary_tree_t *root);
-void find_replacement(binary_tree_t *root, size_t level, binary_tree_t **last);
-void free_and_replace(binary_tree_t **root, binary_tree_t **left,
-		      binary_tree_t **right, binary_tree_t **last);
-void heapify(binary_tree_t **root, binary_tree_t *current, int *check);
+typedef binary_tree_t heap_t;
+
+void binary_tree_print(const heap_t *);
+int heap_extract(heap_t **root);
+size_t binary_tree_height(heap_t *root);
+void find_replacement(heap_t *root, size_t level, heap_t **last);
+void free_and_replace(heap_t **root, heap_t **left,
+		      heap_t **right, heap_t **last);
+void heapify(heap_t **root, heap_t *current, int *check);
 
 #endif /* _BINARY_TREES_H_ */
