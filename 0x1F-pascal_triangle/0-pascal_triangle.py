@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-from math import factorial
 """
 Pascal triangle module
 """
