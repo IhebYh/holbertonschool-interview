@@ -2,6 +2,7 @@
 #define _SUBSTRING_H_
 
 #include <stdio.h>
+#include <stdlib.h>
 
 int *find_substring(char const *s, char const **words, int nb_words, int *n);
 int _strlen(char const *s);
